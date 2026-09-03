@@ -1,0 +1,37 @@
+# Deploy jobs for Exercise 06.
+# Merge these into your existing .gitlab-ci.yml from Exercise 05:
+#   - add `deploy` to the `stages:` list
+#   - append the two jobs below
+#
+# The "deploy" here just runs ./deploy.sh, which prints and sleeps — no real
+# infrastructure. The point is the environment tracking and the manual gate.
+
+# stages:
+#   - lint
+#   - test
+#   - build
+#   - deploy
+
+deploy-staging:
+  stage: deploy
+  needs: [build]                       # start as soon as build is done
+  script:
+    - ./deploy.sh staging
+  environment:
+    name: staging
+    url: https://staging.example.com
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH     # only from main
+
+deploy-production:
+  stage: deploy
+  needs: [deploy-staging]               # only after staging succeeded
+  script:
+    - ./deploy.sh production
+  environment:
+    name: production
+    url: https://example.com
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+      when: manual                      # appears, but waits for a human click
+  allow_failure: false                  # a skipped/failed prod deploy fails the pipeline

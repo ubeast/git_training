@@ -1,17 +1,32 @@
-# Git Training
+# Training Materials
 
-Materials for a hands-on Git training class.
+Hands-on training courses. Each course is self-contained in its own folder.
 
-## Structure
+| Course | Folder | Status |
+| --- | --- | --- |
+| **Git** — version control fundamentals for complete beginners | [`git/`](git/) | Ready |
+| **GitLab** — using GitLab on top of git (projects, merge requests, CI/CD) | [`gitlab/`](gitlab/) | Ready |
+| **Git in Databricks** — version control for notebooks, Git folders, jobs from Git, Asset Bundles | [`databricks/`](databricks/) | Ready |
 
-- `videos/` — video content used during the class (see `videos/README.md`)
-- `exercises/` — hands-on exercises for participants
+Start with **Git** — the GitLab and Databricks courses assume you already know
+the git fundamentals taught there. The Databricks course also refers to the
+GitLab course for CI/CD concepts, but doesn't require it.
 
-## Getting Started
+## How each course is organized
 
-Clone this repo and follow along during the session:
+- `modules/` — numbered lesson modules to read through, in order
+- `exercises/` — hands-on labs with a starting point, tasks, and solutions
+- `instructor-guide.md` — facilitation guide: timing, demo scripts, talking points
+- `cheat-sheet.md` — one-page command reference
+- `videos/` — short videos used during the session (media not committed; see `videos/links.md`)
+
+## For participants
+
+Clone this repo and work through the course folder for your session:
 
 ```bash
 git clone <repo-url>
-cd git_training
+cd git_training/git      # or gitlab/ , databricks/
 ```
+
+Open `git/README.md` and follow it from the top.
