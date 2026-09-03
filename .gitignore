@@ -1,8 +1,8 @@
-# Video files (large binaries — see videos/README.md)
-# Ignore everything in videos/ except the README explaining what belongs there
-videos/*
-!videos/README.md
-!videos/links.md
+# Video files (large binaries — see each training's videos/README.md)
+# Ignore video media everywhere except the docs explaining what belongs there
+**/videos/*
+!**/videos/README.md
+!**/videos/links.md
 
 # OS
 .DS_Store

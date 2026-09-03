@@ -1,0 +1,45 @@
+# Minimal hand-written Asset Bundle for Exercise 06 (Option B).
+# `databricks bundle init` (Option A) generates a richer version of this.
+#
+# Before you deploy:
+#   - set dev.workspace.host to YOUR workspace URL
+#   - make sure `databricks auth login --host <that URL>` works
+#
+# Deploy:   databricks bundle deploy   -t dev
+# Run:      databricks bundle run weekly_rollup -t dev
+# Inspect:  databricks bundle validate -t prod      (don't deploy prod from a laptop)
+# Clean up: databricks bundle destroy  -t dev
+
+bundle:
+  name: bundle_lab
+
+include:
+  - resources/*.yml
+
+variables:
+  catalog:
+    description: Unity Catalog the job writes to
+    default: main_dev
+
+targets:
+
+  dev:
+    mode: development        # names prefixed [dev you], schedules paused, per-user path
+    default: true
+    workspace:
+      host: https://REPLACE-ME.cloud.databricks.com
+    variables:
+      catalog: main_dev
+
+  prod:
+    mode: production         # strict validation, real names, schedules live
+    workspace:
+      host: https://REPLACE-ME-PROD.cloud.databricks.com
+      root_path: /Workspace/Users/ci-sp-prod@example.com/.bundle/${bundle.name}/${bundle.target}
+    run_as:
+      service_principal_name: ci-sp-prod
+    permissions:
+      - level: CAN_MANAGE
+        group_name: data-platform
+    variables:
+      catalog: main_prod

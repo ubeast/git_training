@@ -1,0 +1,58 @@
+# Starter pipeline for Exercise 05.
+# Copy this to the repo root as `.gitlab-ci.yml`.
+#
+# If your class uses a project runner instead of shared runners, add
+#   tags: [course]
+# to each job (or to the `default:` block).
+
+stages:
+  - lint
+  - test
+  - build
+
+default:
+  image: python:3.12
+  # Cache the pip download cache, keyed on the requirements file so it
+  # invalidates when dependencies change. Best-effort: never rely on it.
+  cache:
+    key:
+      files:
+        - requirements.txt
+    paths:
+      - .cache/pip
+  before_script:
+    - python -m pip install --upgrade pip
+    - pip install -r requirements.txt
+  variables:
+    PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+
+lint:
+  stage: lint
+  script:
+    - ruff check .
+
+test:
+  stage: test
+  script:
+    - pytest --junitxml=report.xml
+  artifacts:
+    when: always          # keep the report even when tests fail
+    reports:
+      junit: report.xml
+    paths:
+      - report.xml
+    expire_in: 1 week
+
+build:
+  stage: build
+  script:
+    - python -m build
+  artifacts:
+    paths:
+      - dist/
+    expire_in: 1 week
+  rules:
+    # Only build on merge requests and on the default branch — no need to
+    # build every random feature-branch push.
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH

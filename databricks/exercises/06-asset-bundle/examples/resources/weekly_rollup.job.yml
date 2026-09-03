@@ -1,0 +1,29 @@
+# One job for the Exercise 06 bundle.
+# In `mode: development` the deployed job is named "[dev <you>] weekly_rollup"
+# and its schedule is paused.
+
+resources:
+  jobs:
+    weekly_rollup:
+      name: weekly_rollup
+
+      schedule:
+        quartz_cron_expression: "0 0 6 ? * MON"   # Mondays 06:00 — paused in dev mode
+        timezone_id: UTC
+
+      tasks:
+        - task_key: rollup
+          notebook_task:
+            notebook_path: ../notebooks/rollup.py
+            base_parameters:
+              catalog: ${var.catalog}
+          job_cluster_key: main
+
+      job_clusters:
+        - job_cluster_key: main
+          new_cluster:
+            spark_version: "15.4.x-scala2.12"
+            # Pick a node type valid for your cloud/region:
+            #   AWS e.g. i3.xlarge / m5d.large  |  Azure e.g. Standard_DS3_v2  |  GCP e.g. n2-standard-4
+            node_type_id: "i3.xlarge"
+            num_workers: 1
