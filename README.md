@@ -1,3 +1,8 @@
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="branding/logo-dark.svg">
+  <img alt="Git Training" src="branding/logo.svg" width="340">
+</picture>
+
 # Training Materials
 
 Hands-on training courses. Each course is self-contained in its own folder.

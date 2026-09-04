@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Git Training">
+  <title>Git Training favicon</title>
+  <rect width="64" height="64" rx="14" fill="#1F2328"/>
+  <svg x="9" y="9" width="46" height="46" viewBox="0 0 120 120">
+    <g fill="none" stroke="#E6EDF3" stroke-width="8.5" stroke-linecap="round">
+      <path d="M60 100 C 44 92, 26 80, 26 60"/>
+      <path d="M60 100 C 76 92, 94 80, 94 60"/>
+      <path d="M26 60 C 26 40, 44 28, 60 20"/>
+      <path d="M94 60 C 94 40, 76 28, 60 20"/>
+    </g>
+    <g fill="#F05032">
+      <circle cx="60" cy="100" r="10"/>
+      <circle cx="26" cy="60" r="10"/>
+      <circle cx="94" cy="60" r="10"/>
+      <circle cx="60" cy="20" r="11.5"/>
+    </g>
+  </svg>
+</svg>

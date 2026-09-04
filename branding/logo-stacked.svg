@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 212" role="img" aria-label="Git Training">
+  <title>Git Training (stacked)</title>
+  <svg x="60" y="6" width="120" height="120" viewBox="0 0 120 120">
+    <g fill="none" stroke="#1F2328" stroke-width="7.5" stroke-linecap="round">
+      <path d="M60 100 C 44 92, 26 80, 26 60"/>
+      <path d="M60 100 C 76 92, 94 80, 94 60"/>
+      <path d="M26 60 C 26 40, 44 28, 60 20"/>
+      <path d="M94 60 C 94 40, 76 28, 60 20"/>
+    </g>
+    <g fill="#F05032">
+      <circle cx="60" cy="100" r="9"/>
+      <circle cx="26" cy="60" r="9"/>
+      <circle cx="94" cy="60" r="9"/>
+      <circle cx="60" cy="20" r="10.5"/>
+    </g>
+  </svg>
+  <text x="120" y="172" text-anchor="middle" font-family="ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="30" font-weight="600" letter-spacing="4" fill="#1F2328">GIT TRAINING</text>
+</svg>
